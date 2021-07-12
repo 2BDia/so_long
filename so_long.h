@@ -10,6 +10,11 @@ typedef struct	s_params
 	void	*mlx;
 	void	*win;
 	void	*img;
+	int		img_w;
+	int		img_h;
+	void	*bg_img;
+	int		bg_img_w;
+	int		bg_img_h;
 	int		x;
 	int		y;
 	int		count;
