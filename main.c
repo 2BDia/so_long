@@ -6,12 +6,13 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/14 14:08:36 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/14 15:35:03 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
+#include <time.h>
 
 void	set_bg(t_params *para)
 {
@@ -109,9 +110,13 @@ int	main(void)
 	para->pl_img = mlx_xpm_file_to_image(para->mlx, "./may.xpm", &para->pl_img_w, &para->pl_img_h);
 	para->bg_img = mlx_xpm_file_to_image(para->mlx, "./water.xpm", &para->bg_img_w, &para->bg_img_h);
 	para->rock_img = mlx_xpm_file_to_image(para->mlx, "./rock.xpm", &para->rock_img_w, &para->rock_img_h);
+	para->item_img = mlx_xpm_file_to_image(para->mlx, "./item.xpm", &para->item_img_w, &para->item_img_h);
+	para->ex_img = mlx_xpm_file_to_image(para->mlx, "./ex.xpm", &para->ex_img_w, &para->ex_img_h);
 	para->win = mlx_new_window(para->mlx, para->win_w, para->win_h, "./so_long");
 	set_bg(para);
 	set_borders(para);
+	mlx_put_image_to_window(para->mlx, para->win, para->ex_img, 128, 128);
+	mlx_put_image_to_window(para->mlx, para->win, para->item_img, 256, 256);
 	mlx_put_image_to_window(para->mlx, para->win, para->pl_img, para->posx, para->posy);
 	mlx_key_hook(para->win, ft_key, para);
 	mlx_hook(para->win, 17, 0L, ft_close, para);

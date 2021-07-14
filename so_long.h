@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/14 13:37:18 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/14 15:29:04 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct	s_params
 	void	*rock_img;
 	int		rock_img_w;
 	int		rock_img_h;
+	void	*item_img;
+	int		item_img_w;
+	int		item_img_h;
+	void	*ex_img;
+	int		ex_img_w;
+	int		ex_img_h;
 	int		posx;
 	int		posy;
 	int		count;
