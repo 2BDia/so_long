@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/14 14:03:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/14 14:08:36 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,12 @@ void	set_borders(t_params *para)
 	set_borders_xy(para, para->win_w - 64, 64, 1);
 }
 
-int	ft_close(int key, t_params *para)
+int	ft_close(t_params *para)
 {
-	if (key == 53)
-	{
-		mlx_destroy_window(para->mlx, para->win);
-		mlx_destroy_image(para->mlx, para->pl_img);
-		mlx_destroy_image(para->mlx, para->bg_img);
-		mlx_destroy_image(para->mlx, para->rock_img);
-	}
+	mlx_destroy_window(para->mlx, para->win);
+	mlx_destroy_image(para->mlx, para->pl_img);
+	mlx_destroy_image(para->mlx, para->bg_img);
+	mlx_destroy_image(para->mlx, para->rock_img);
 	free(para);
 	exit (0);
 }
@@ -79,7 +76,7 @@ int	ft_key(int key, t_params *para)
 
 	check = 0;
 	if (key == 53)
-		ft_close(key, para);
+		ft_close(para);
 	else if (key == 123)
 		check = move_left(para);
 	else if (key == 124)
@@ -93,6 +90,7 @@ int	ft_key(int key, t_params *para)
 		nbr = ft_itoa(++para->count);
 		write(1, nbr, ft_strlen(nbr));
 		write(1, "\n", 1);
+		free(nbr);
 	}
 	return (0);
 }
