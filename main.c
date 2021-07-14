@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/14 15:35:03 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/14 15:42:26 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	ft_close(t_params *para)
 	mlx_destroy_image(para->mlx, para->pl_img);
 	mlx_destroy_image(para->mlx, para->bg_img);
 	mlx_destroy_image(para->mlx, para->rock_img);
+	mlx_destroy_image(para->mlx, para->item_img);
+	mlx_destroy_image(para->mlx, para->ex_img);
 	free(para);
 	exit (0);
 }
@@ -115,8 +117,6 @@ int	main(void)
 	para->win = mlx_new_window(para->mlx, para->win_w, para->win_h, "./so_long");
 	set_bg(para);
 	set_borders(para);
-	mlx_put_image_to_window(para->mlx, para->win, para->ex_img, 128, 128);
-	mlx_put_image_to_window(para->mlx, para->win, para->item_img, 256, 256);
 	mlx_put_image_to_window(para->mlx, para->win, para->pl_img, para->posx, para->posy);
 	mlx_key_hook(para->win, ft_key, para);
 	mlx_hook(para->win, 17, 0L, ft_close, para);
