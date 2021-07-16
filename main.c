@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 16:28:35 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 16:30:38 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,14 +147,14 @@ int	main(int argc, char **argv)
 	para->posx = 64;
 	para->posy = 64;
 	para->mlx = mlx_init();
-	para->win_w = 64 * 16;
-	para->win_h = 64 * 12;
 	init_sprites(para);
 	if (!check_map(para, argv))
 	{
 		printf("Error\n");
 		ft_close(para);
 	}
+	para->win_w = 64 * para->map_w;
+	para->win_h = 64 * para->map_h;
 	para->win = mlx_new_window(para->mlx, para->win_w, para->win_h, "./so_long");
 	set_bg(para);
 	set_borders(para);

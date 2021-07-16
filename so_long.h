@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 16:20:25 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 16:48:14 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		move_right(t_params *para);
 int		move_down(t_params *para);
 int		move_up(t_params *para);
 
-char	**read_map(char **argv);
 int		check_map(t_params *para, char **argv);
 
 #endif
