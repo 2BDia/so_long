@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 15:25:46 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 16:20:25 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct	s_params
 	int		posy;
 	int		count;
 	char	**map;
+	int		map_w;
+	int		map_h;
 	void	*pl_img;
 	int		pl_img_w;
 	int		pl_img_h;

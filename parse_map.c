@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 16:08:43 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 16:21:15 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ int	check_map(t_params *para, char **argv)
 {
 	int		i;
 	int 	j;
+	int		k;
 
 	i = 0;
 	j = 0;
+	k = 1;
 	para->map = read_map(argv);
-	printf("map[1]=%s\n", para->map[1]);
 	while (para->map[0][j])
 	{
 		if (para->map[0][j] != '1')
@@ -74,6 +75,15 @@ int	check_map(t_params *para, char **argv)
 			return (0);
 		j++;
 	}
+	j = ft_strlen(para->map[0]) - 1;
+	while (k < i)
+	{
+		if (para->map[k][0] != '1' || para->map[k][j] != '1')
+			return (0);
+		k++;
+	}
+	para->map_w = j + 1;
+	para->map_h = i + 1;
 	return (1);
 }
 
