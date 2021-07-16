@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 11:51:10 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 15:25:46 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ typedef struct	s_params
 	void	*win;
 	int 	win_w;
 	int		win_h;
+	int		posx;
+	int		posy;
+	int		count;
+	char	**map;
 	void	*pl_img;
 	int		pl_img_w;
 	int		pl_img_h;
@@ -39,9 +43,6 @@ typedef struct	s_params
 	void	*ex_img;
 	int		ex_img_w;
 	int		ex_img_h;
-	int		posx;
-	int		posy;
-	int		count;
 }	t_params;
 
 char	*ft_itoa(int value);
@@ -56,5 +57,8 @@ int		move_left(t_params *para);
 int		move_right(t_params *para);
 int		move_down(t_params *para);
 int		move_up(t_params *para);
+
+char	**read_map(char **argv);
+int		check_map(t_params *para, char **argv);
 
 #endif

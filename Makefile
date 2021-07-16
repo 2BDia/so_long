@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 11:22:48 by rvan-aud          #+#    #+#              #
-#    Updated: 2021/07/16 12:02:22 by rvan-aud         ###   ########.fr        #
+#    Updated: 2021/07/16 13:46:30 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRCS	= 	main.c			\
 			modgnl_utils.c	\
 			move_player.c	\
 			utils.c			\
+			parse_map.c		\
 
 NAME	= so_long
 
@@ -22,12 +23,12 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS	= -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -Wall -Wextra -Werror
+CFLAGS	= -I /usr/local/include -Wall -Wextra -Werror
 
 OBJS	= $(SRCS:.c=.o)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+			@$(CC) $(CFLAGS) -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
 
 all:		$(NAME)
 
