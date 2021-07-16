@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/14 15:42:26 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 12:25:39 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,50 @@ int	ft_key(int key, t_params *para)
 	return (0);
 }
 
-int	main(void)
+char	**read_map(char **argv)
+{
+	char	*line;
+	char	**map;
+	int		ret;
+	int		i;
+	int 	fd;
+
+	ret = 1;
+	i = 0;
+	fd = open(argv[1], O_RDONLY);
+	printf("argv[1]=%s\n", argv[1]);
+	while (ret > 0)
+	{
+		ret = get_next_line(fd, &line);
+		i++;
+	}
+	close(fd);
+	map = (char **)malloc(sizeof(char *) * (i + 1));
+	ret = 0;
+	while (ret < i)
+		map[ret++] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
+	ret = 1;
+	i = 0;
+	fd = open(argv[1], O_RDONLY);
+	while (ret > 0)
+	{
+		ret = get_next_line(fd, &line);
+		printf("ret=%d\n", ret);
+		map[i++] = line;
+	}
+	if (line)
+		free(line);
+	printf("map[1]=%s\n", map[1]);
+	close(fd);
+	return (map);
+}
+
+int	main(int argc, char **argv)
 {
 	t_params	*para;
+	char		**map;
 
+	(void)argc;
 	para = (t_params *)malloc(sizeof(t_params));
 	para->count = 0;
 	para->posx = 64;
@@ -114,6 +154,7 @@ int	main(void)
 	para->rock_img = mlx_xpm_file_to_image(para->mlx, "./rock.xpm", &para->rock_img_w, &para->rock_img_h);
 	para->item_img = mlx_xpm_file_to_image(para->mlx, "./item.xpm", &para->item_img_w, &para->item_img_h);
 	para->ex_img = mlx_xpm_file_to_image(para->mlx, "./ex.xpm", &para->ex_img_w, &para->ex_img_h);
+	read_map(argv);
 	para->win = mlx_new_window(para->mlx, para->win_w, para->win_h, "./so_long");
 	set_bg(para);
 	set_borders(para);

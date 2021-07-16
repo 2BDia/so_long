@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/14 15:29:04 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 11:51:10 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 typedef struct	s_params
 {
@@ -46,9 +47,14 @@ typedef struct	s_params
 char	*ft_itoa(int value);
 int		ft_strlen(char *str);
 
-int	move_left(t_params *para);
-int	move_right(t_params *para);
-int	move_down(t_params *para);
-int	move_up(t_params *para);
+int		get_next_line(int fd, char **line);
+char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strchr(const char *s, int c);
+int		ft_modstrlen(const char *s, int mod);
+
+int		move_left(t_params *para);
+int		move_right(t_params *para);
+int		move_down(t_params *para);
+int		move_up(t_params *para);
 
 #endif
