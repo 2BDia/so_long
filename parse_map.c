@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 16:50:12 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 17:23:24 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,9 @@ int	check_map(t_params *para, char **argv)
 	if (!check_inside(para))
 		return (0);
 	return (1);
+}
+
+void	parse_map(t_params *para)
+{
+	
 }

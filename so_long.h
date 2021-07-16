@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 16:48:14 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/16 17:14:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ typedef struct	s_params
 	void	*win;
 	int 	win_w;
 	int		win_h;
-	int		posx;
-	int		posy;
+	int		pl_count;
+	int		pl_x;
+	int		pl_y;
+	int		ex_count;
+	int		ex_x;
+	int		ex_y;
+	int		item_count;
 	int		count;
 	char	**map;
 	int		map_w;
