@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/20 13:31:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/20 16:53:57 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+
+typedef	struct	s_items
+{
+	int	x;
+	int	y;
+}	t_items;
+
+typedef	struct s_rocks
+{
+	int	x;
+	int	y;
+}	t_rocks;
 
 typedef struct	s_params
 {
@@ -31,7 +43,10 @@ typedef struct	s_params
 	int		ex_x;
 	int		ex_y;
 	int		item_count;
-	int		count;
+	t_items	*items_pos;
+	int		rock_count;
+	t_rocks	*rocks_pos;
+	int		moves;
 	char	**map;
 	int		map_w;
 	int		map_h;

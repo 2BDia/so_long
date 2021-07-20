@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/20 13:50:08 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/20 17:31:10 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,34 @@ void	set_borders(t_params *para)
 	set_borders_xy(para, para->win_w - 64, 64, 1);
 }
 
-static void	freestrs(char **strs, int j)
+void	set_items(t_params *para)
 {
-	while (j >= 0)
+	int	i;
+
+	i = 0;
+	while (i < para->item_count)
 	{
-		write(1, "ok\n", 3);
-		free(strs[j--]);
+		mlx_put_image_to_window(para->mlx, para->win, para->item_img, para->items_pos[i].x, para->items_pos[i].y);
+		i++;
 	}
+}
+
+void	set_rocks(t_params *para)
+{
+	int	i;
+
+	i = 0;
+	while (i < para->rock_count)
+	{
+		mlx_put_image_to_window(para->mlx, para->win, para->rock_img, para->rocks_pos[i].x, para->rocks_pos[i].y);
+		i++;
+	}
+}
+
+static void	freestrs(char **strs, int h)
+{
+	while (h >= 0)
+		free(strs[--h]);
 	free(strs);
 }
 
@@ -79,9 +100,10 @@ int	ft_close(t_params *para)
 	mlx_destroy_image(para->mlx, para->rock_img);
 	mlx_destroy_image(para->mlx, para->item_img);
 	mlx_destroy_image(para->mlx, para->ex_img);
-	freestrs(para->map, para->map_h);
+	if (para->map)
+		freestrs(para->map, para->map_h);
 	free(para);
-	system("leaks so_long");
+	// system("leaks so_long");
 	exit (0);
 }
 
@@ -103,7 +125,7 @@ int	ft_key(int key, t_params *para)
 		check = move_up(para);
 	if (key >= 123 && key <= 126 && check == 0)
 	{
-		nbr = ft_itoa(++para->count);
+		nbr = ft_itoa(++para->moves);
 		write(1, nbr, ft_strlen(nbr));
 		write(1, "\n", 1);
 		free(nbr);
@@ -133,7 +155,11 @@ void	init_params(t_params *para)
 	para->ex_x = 0;
 	para->ex_y = 0;
 	para->item_count = 0;
-	para->count = 0;
+	para->moves = 0;
+	para->item_count = 0;
+	para->items_pos = NULL;
+	para->rock_count = 0;
+	para->rocks_pos = NULL;
 	para->map = NULL;
 	para->pl_img = NULL;
 	para->pl_img_w = 0;
@@ -176,6 +202,8 @@ int	main(int argc, char **argv)
 	para->win = mlx_new_window(para->mlx, para->win_w, para->win_h, "./so_long");
 	set_bg(para);
 	set_borders(para);
+	set_items(para);
+	set_rocks(para);
 	mlx_put_image_to_window(para->mlx, para->win, para->pl_img, para->pl_x, para->pl_y);
 	mlx_put_image_to_window(para->mlx, para->win, para->ex_img, para->ex_x, para->ex_y);
 	mlx_key_hook(para->win, ft_key, para);

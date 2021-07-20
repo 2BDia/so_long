@@ -6,11 +6,12 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/20 13:34:44 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/20 17:29:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 static char	**read_map(char **argv)
 {
@@ -26,6 +27,7 @@ static char	**read_map(char **argv)
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, &line);
+		free(line);
 		i++;
 	}
 	close(fd);
@@ -39,17 +41,17 @@ static char	**read_map(char **argv)
 		if (!map[ret++])
 			return (NULL);
 	}
+	free(line);
 	ret = 1;
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	while (ret > 0)
 	{
-		ret = get_next_line(fd, &line);
-		map[i++] = line;
+		//leaks happen here?
+		ret = get_next_line(fd, &map[i]);
+		i++;
 	}
 	map[i] = NULL;
-	if (line)
-		free(line);
 	close(fd);
 	return (map);
 }
@@ -97,10 +99,19 @@ static int	check_inside(t_params *para)
 				&& para->map[i][j] != 'P' && para->map[i][j] != 'C'
 				&& para->map[i][j] != 'E')
 				return (0);
+			if (para->map[i][j] == 'C')
+				para->item_count++;
+			if (para->map[i][j] == '1' && i != 0 && i != para->map_h - 1
+				&& j != 0 && j != para->map_w - 1)
+				para->rock_count++;
 			j++;
 		}
 		i++;
 	}
+	if (para->item_count == 0 || para->rock_count == 0)
+		return (0);
+	para->items_pos = (t_items *)malloc(sizeof(t_params) * (para->item_count));
+	para->rocks_pos = (t_rocks *)malloc(sizeof(t_params) * (para->rock_count));
 	return (1);
 }
 
@@ -138,10 +149,14 @@ int	parse_map(t_params *para)
 	int	j;
 	int	checkpl;
 	int	checkex;
+	int	item;
+	int	rock;
 
 	i = 1;
 	checkpl = 0;
 	checkex = 0;
+	item = 0;
+	rock = 0;
 	while (i < para->map_h - 1)
 	{
 		j = 1;
@@ -162,6 +177,16 @@ int	parse_map(t_params *para)
 				para->ex_x = j * 64;
 				para->ex_y = i * 64;
 				checkex = 1;
+			}
+			else if (para->map[i][j] == 'C')
+			{
+				para->items_pos[item].x = j * 64;
+				para->items_pos[item++].y = i * 64;
+			}
+			else if (para->map[i][j] == '1')
+			{
+				para->rocks_pos[rock].x = j * 64;
+				para->rocks_pos[rock++].y = i * 64;
 			}
 			j++;
 		}

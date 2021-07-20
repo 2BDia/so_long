@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 11:22:48 by rvan-aud          #+#    #+#              #
-#    Updated: 2021/07/16 13:46:30 by rvan-aud         ###   ########.fr        #
+#    Updated: 2021/07/20 16:07:07 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS	= -I /usr/local/include -Wall -Wextra -Werror
+CFLAGS	= -I /usr/local/include 
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -41,3 +41,5 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
+
+# -Wall -Wextra -Werror
