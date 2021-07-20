@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 17:23:24 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/20 13:34:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,15 @@ static char	**read_map(char **argv)
 	}
 	close(fd);
 	map = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!map)
+		return (NULL);
 	ret = 0;
 	while (ret < i)
-		map[ret++] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
+	{
+		map[ret] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
+		if (!map[ret++])
+			return (NULL);
+	}
 	ret = 1;
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
@@ -126,7 +132,40 @@ int	check_map(t_params *para, char **argv)
 	return (1);
 }
 
-void	parse_map(t_params *para)
+int	parse_map(t_params *para)
 {
-	
+	int	i;
+	int	j;
+	int	checkpl;
+	int	checkex;
+
+	i = 1;
+	checkpl = 0;
+	checkex = 0;
+	while (i < para->map_h - 1)
+	{
+		j = 1;
+		while (j < para->map_w - 1)
+		{
+			if (para->map[i][j] == 'P')
+			{
+				if (checkpl == 1)
+					return (0);
+				para->pl_x = j * 64;
+				para->pl_y = i * 64;
+				checkpl = 1;
+			}
+			else if (para->map[i][j] == 'E')
+			{
+				if (checkex == 1)
+					return (0);
+				para->ex_x = j * 64;
+				para->ex_y = i * 64;
+				checkex = 1;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

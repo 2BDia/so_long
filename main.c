@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/16 17:15:27 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/20 13:50:08 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ void	set_borders(t_params *para)
 	set_borders_xy(para, para->win_w - 64, 64, 1);
 }
 
+static void	freestrs(char **strs, int j)
+{
+	while (j >= 0)
+	{
+		write(1, "ok\n", 3);
+		free(strs[j--]);
+	}
+	free(strs);
+}
+
 int	ft_close(t_params *para)
 {
 	if (para->win)
@@ -69,8 +79,9 @@ int	ft_close(t_params *para)
 	mlx_destroy_image(para->mlx, para->rock_img);
 	mlx_destroy_image(para->mlx, para->item_img);
 	mlx_destroy_image(para->mlx, para->ex_img);
-	free(para->map); //free tous les éléments de map
+	freestrs(para->map, para->map_h);
 	free(para);
+	system("leaks so_long");
 	exit (0);
 }
 
@@ -116,8 +127,8 @@ void	init_params(t_params *para)
 	para->win_w = 0;
 	para->win_h = 0;
 	para->pl_count = 0;
-	para->pl_x = 64;
-	para->pl_y = 64;
+	para->pl_x = 0;
+	para->pl_y = 0;
 	para->ex_count = 0;
 	para->ex_x = 0;
 	para->ex_y = 0;
@@ -148,19 +159,25 @@ int	main(int argc, char **argv)
 	(void)argc;
 	para = (t_params *)malloc(sizeof(t_params));
 	init_params(para);
-	para->mlx = mlx_init();
-	init_sprites(para);
 	if (!check_map(para, argv))
 	{
-		printf("Error\n");
+		write(1, "Error\n", 6);
 		ft_close(para);
 	}
+	if (!parse_map(para))
+	{
+		write(1, "Error\n", 6);
+		ft_close(para);
+	}
+	para->mlx = mlx_init();
+	init_sprites(para);
 	para->win_w = 64 * para->map_w;
 	para->win_h = 64 * para->map_h;
 	para->win = mlx_new_window(para->mlx, para->win_w, para->win_h, "./so_long");
 	set_bg(para);
 	set_borders(para);
 	mlx_put_image_to_window(para->mlx, para->win, para->pl_img, para->pl_x, para->pl_y);
+	mlx_put_image_to_window(para->mlx, para->win, para->ex_img, para->ex_x, para->ex_y);
 	mlx_key_hook(para->win, ft_key, para);
 	mlx_hook(para->win, 17, 0L, ft_close, para);
 	mlx_loop(para->mlx);
