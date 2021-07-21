@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 14:55:24 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 15:55:29 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,13 @@ int	ft_key(int key, t_params *para)
 	}
 	if (check_item(para, para->pl_x, para->pl_y))
 		para->collected++;
+	printf("itemcount=%d\n", para->item_count);
+	printf("collected=%d\n", para->collected);
 	if (check_ex(para, para->pl_x, para->pl_y) && para->collected == para->item_count)
-		para->gg = 1;
+	{
+		write(1, "ok\n", 3);
+		// ft_close(para);
+	}
 	return (0);
 }
 
@@ -124,8 +129,6 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(para->mlx, para->win, para->ex_img, para->ex_x, para->ex_y);
 	mlx_key_hook(para->win, ft_key, para);
 	mlx_hook(para->win, 17, 0L, ft_close, para);
-	// if (para->gg == 1)
-	// 	ft_close(para);
 	mlx_loop(para->mlx);
 	return (0);
 }

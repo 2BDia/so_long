@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:08:59 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 14:43:21 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 15:56:01 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_close(t_params *para)
 	if (para->map)
 		free_strs(para->map, para->map_h);
 	free_lst(para);
-	// free(para);
+	free(para);
 	system("leaks so_long");
 	exit (0);
 }
