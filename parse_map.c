@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 12:40:50 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 14:06:29 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,12 @@ static char	**read_map(char **argv)
 	if (!map)
 		return (NULL);
 	ret = 0;
-	// while (ret < i)
-	// {
-	// 	map[ret] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1)); //malloc 2 fois?
-	// 	if (!map[ret++])
-	// 		return (NULL);
-	// }
-	free(line);
 	ret = 1;
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	while (ret > 0)
 	{
-		//leaks happen here?
 		ret = get_next_line(fd, &map[i]);
-		printf("map[i]=%s, size=%d\n", map[i], sizeof(map[i]));
 		i++;
 	}
 	map[i] = NULL;

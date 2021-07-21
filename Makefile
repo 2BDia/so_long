@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 11:22:48 by rvan-aud          #+#    #+#              #
-#    Updated: 2021/07/20 16:07:07 by rvan-aud         ###   ########.fr        #
+#    Updated: 2021/07/21 14:09:19 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRCS	= 	main.c			\
 			move_player.c	\
 			utils.c			\
 			parse_map.c		\
+			close.c			\
+			set_map.c		\
 
 NAME	= so_long
 
@@ -23,7 +25,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS	= -I /usr/local/include 
+CFLAGS	= -I /usr/local/include -Wall -Wextra -Werror
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -41,5 +43,3 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
-
-# -Wall -Wextra -Werror
