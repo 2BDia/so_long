@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/20 17:31:10 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 12:19:58 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,26 +84,39 @@ void	set_rocks(t_params *para)
 	}
 }
 
-static void	freestrs(char **strs, int h)
+static void	free_strs(char **strs, int h)
 {
 	while (h >= 0)
 		free(strs[--h]);
 	free(strs);
 }
 
+static void	free_lst(t_params *para)
+{
+	if (para->item_count > 0)
+	{
+		free(para->items_pos);
+		if (para->rock_count > 0)
+			free(para->rocks_pos);
+	}
+}
+
 int	ft_close(t_params *para)
 {
-	if (para->win)
+	if (para->mlx)
+	{
 		mlx_destroy_window(para->mlx, para->win);
-	mlx_destroy_image(para->mlx, para->pl_img);
-	mlx_destroy_image(para->mlx, para->bg_img);
-	mlx_destroy_image(para->mlx, para->rock_img);
-	mlx_destroy_image(para->mlx, para->item_img);
-	mlx_destroy_image(para->mlx, para->ex_img);
+		mlx_destroy_image(para->mlx, para->pl_img);
+		mlx_destroy_image(para->mlx, para->bg_img);
+		mlx_destroy_image(para->mlx, para->rock_img);
+		mlx_destroy_image(para->mlx, para->item_img);
+		mlx_destroy_image(para->mlx, para->ex_img);
+	}
 	if (para->map)
-		freestrs(para->map, para->map_h);
+		free_strs(para->map, para->map_h);
+	free_lst(para);
 	free(para);
-	// system("leaks so_long");
+	system("leaks so_long");
 	exit (0);
 }
 

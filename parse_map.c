@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/20 17:29:35 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 12:40:50 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static char	**read_map(char **argv)
 	if (!map)
 		return (NULL);
 	ret = 0;
-	while (ret < i)
-	{
-		map[ret] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
-		if (!map[ret++])
-			return (NULL);
-	}
+	// while (ret < i)
+	// {
+	// 	map[ret] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1)); //malloc 2 fois?
+	// 	if (!map[ret++])
+	// 		return (NULL);
+	// }
 	free(line);
 	ret = 1;
 	i = 0;
@@ -49,6 +49,7 @@ static char	**read_map(char **argv)
 	{
 		//leaks happen here?
 		ret = get_next_line(fd, &map[i]);
+		printf("map[i]=%s, size=%d\n", map[i], sizeof(map[i]));
 		i++;
 	}
 	map[i] = NULL;
@@ -108,10 +109,11 @@ static int	check_inside(t_params *para)
 		}
 		i++;
 	}
-	if (para->item_count == 0 || para->rock_count == 0)
+	if (para->item_count == 0)
 		return (0);
 	para->items_pos = (t_items *)malloc(sizeof(t_params) * (para->item_count));
-	para->rocks_pos = (t_rocks *)malloc(sizeof(t_params) * (para->rock_count));
+	if (para->rock_count > 0)
+		para->rocks_pos = (t_rocks *)malloc(sizeof(t_params) * (para->rock_count));
 	return (1);
 }
 
@@ -192,5 +194,7 @@ int	parse_map(t_params *para)
 		}
 		i++;
 	}
+	if (checkpl == 0 || checkex == 0)
+		return (0);
 	return (1);
 }
