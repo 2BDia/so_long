@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 14:53:26 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 17:00:40 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ void	set_rocks(t_params *para);
 int		check_rock(t_params *para, int x, int y);
 int		check_item(t_params *para, int x, int y);
 int		check_ex(t_params *para, int x, int y);
+
+void	loop(t_params *para);
 
 #endif

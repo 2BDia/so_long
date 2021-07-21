@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 15:55:29 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 17:42:04 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <time.h>
 
-int	ft_key(int key, t_params *para)
+static void	process_keys(int key, t_params *para)
 {
 	char	*nbr;
 	int		check;
@@ -37,15 +37,22 @@ int	ft_key(int key, t_params *para)
 		write(1, "\n", 1);
 		free(nbr);
 	}
+}
+
+int	ft_key(int key, t_params *para)
+{
+	if (para->gg)
+		ft_close(para);
+	process_keys(key, para);
 	if (check_item(para, para->pl_x, para->pl_y))
 		para->collected++;
-	printf("itemcount=%d\n", para->item_count);
-	printf("collected=%d\n", para->collected);
 	if (check_ex(para, para->pl_x, para->pl_y) && para->collected == para->item_count)
 	{
-		write(1, "ok\n", 3);
-		// ft_close(para);
+		para->gg = 1;
+		// write(1, "ok\n", 3);
 	}
+	// printf("itemcount=%d\n", para->item_count);
+	// printf("collected=%d\n", para->collected);
 	return (0);
 }
 
