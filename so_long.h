@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 14:10:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 14:53:26 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_params
 	int		rock_count;
 	t_rocks	*rocks_pos;
 	int		moves;
+	int		collected;
 	char	**map;
 	int		map_w;
 	int		map_h;
@@ -65,6 +66,7 @@ typedef struct	s_params
 	void	*ex_img;
 	int		ex_img_w;
 	int		ex_img_h;
+	int		gg;
 }	t_params;
 
 char	*ft_itoa(int value);
@@ -89,5 +91,9 @@ void	set_bg(t_params *para);
 void	set_borders(t_params *para);
 void	set_items(t_params *para);
 void	set_rocks(t_params *para);
+
+int		check_rock(t_params *para, int x, int y);
+int		check_item(t_params *para, int x, int y);
+int		check_ex(t_params *para, int x, int y);
 
 #endif

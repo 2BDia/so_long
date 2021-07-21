@@ -6,7 +6,7 @@
 #    By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 11:22:48 by rvan-aud          #+#    #+#              #
-#    Updated: 2021/07/21 14:09:19 by rvan-aud         ###   ########.fr        #
+#    Updated: 2021/07/21 14:45:09 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS	= 	main.c			\
 			parse_map.c		\
 			close.c			\
 			set_map.c		\
+			check_elem.c	\
 
 NAME	= so_long
 

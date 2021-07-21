@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 14:06:29 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/21 14:16:01 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ static char	**read_map(char **argv)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	while (ret > 0)
-	{
-		ret = get_next_line(fd, &map[i]);
-		i++;
-	}
+		ret = get_next_line(fd, &map[i++]);
 	map[i] = NULL;
 	close(fd);
 	return (map);
