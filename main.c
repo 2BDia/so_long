@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 17:42:04 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:17:42 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_key(int key, t_params *para)
 	process_keys(key, para);
 	if (check_item(para, para->pl_x, para->pl_y))
 		para->collected++;
-	if (check_ex(para, para->pl_x, para->pl_y) && para->collected == para->item_count)
+	if (check_ex(para, para->pl_x, para->pl_y) && para->collected >= para->item_count)
 	{
 		para->gg = 1;
 		// write(1, "ok\n", 3);
@@ -58,7 +58,10 @@ int	ft_key(int key, t_params *para)
 
 void	init_sprites(t_params *para)
 {
-	para->pl_img = mlx_xpm_file_to_image(para->mlx, "sprites/may.xpm", &para->pl_img_w, &para->pl_img_h);
+	para->pl_up_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayup.xpm", &para->pl_img_w, &para->pl_img_h);
+	para->pl_do_img = mlx_xpm_file_to_image(para->mlx, "sprites/maydown.xpm", &para->pl_img_w, &para->pl_img_h);
+	para->pl_ri_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayright.xpm", &para->pl_img_w, &para->pl_img_h);
+	para->pl_le_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayleft.xpm", &para->pl_img_w, &para->pl_img_h);
 	para->bg_img = mlx_xpm_file_to_image(para->mlx, "sprites/water.xpm", &para->bg_img_w, &para->bg_img_h);
 	para->rock_img = mlx_xpm_file_to_image(para->mlx, "sprites/rock.xpm", &para->rock_img_w, &para->rock_img_h);
 	para->item_img = mlx_xpm_file_to_image(para->mlx, "sprites/item.xpm", &para->item_img_w, &para->item_img_h);
@@ -84,7 +87,10 @@ void	init_params(t_params *para)
 	para->moves = 0;
 	para->collected = 0;
 	para->map = NULL;
-	para->pl_img = NULL;
+	para->pl_up_img = NULL;
+	para->pl_do_img = NULL;
+	para->pl_ri_img = NULL;
+	para->pl_le_img = NULL;
 	para->pl_img_w = 0;
 	para->pl_img_h = 0;
 	para->bg_img = NULL;
@@ -132,7 +138,7 @@ int	main(int argc, char **argv)
 	set_borders(para);
 	set_items(para);
 	set_rocks(para);
-	mlx_put_image_to_window(para->mlx, para->win, para->pl_img, para->pl_x, para->pl_y);
+	mlx_put_image_to_window(para->mlx, para->win, para->pl_do_img, para->pl_x, para->pl_y);
 	mlx_put_image_to_window(para->mlx, para->win, para->ex_img, para->ex_x, para->ex_y);
 	mlx_key_hook(para->win, ft_key, para);
 	mlx_hook(para->win, 17, 0L, ft_close, para);

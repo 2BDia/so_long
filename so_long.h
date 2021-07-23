@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 17:00:40 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:10:51 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ typedef struct	s_params
 	char	**map;
 	int		map_w;
 	int		map_h;
-	void	*pl_img;
+	void	*pl_up_img;
+	void	*pl_do_img;
+	void	*pl_ri_img;
+	void	*pl_le_img;
 	int		pl_img_w;
 	int		pl_img_h;
 	void	*bg_img;
