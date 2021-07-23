@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/23 11:17:42 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:55:55 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,9 @@ int	ft_key(int key, t_params *para)
 	if (check_item(para, para->pl_x, para->pl_y))
 		para->collected++;
 	if (check_ex(para, para->pl_x, para->pl_y) && para->collected >= para->item_count)
-	{
 		para->gg = 1;
-		// write(1, "ok\n", 3);
-	}
-	// printf("itemcount=%d\n", para->item_count);
-	// printf("collected=%d\n", para->collected);
+	printf("itemcount=%d\n", para->item_count);
+	printf("collected=%d\n", para->collected);
 	return (0);
 }
 

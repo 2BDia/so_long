@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:44:21 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 14:44:31 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/23 11:57:29 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ int	check_item(t_params *para, int x, int y)
 	{
 		if (x == para->items_pos[i].x)
 			if (y == para->items_pos[i].y)
+			{
+				para->items_pos[i].x = 0;
+				para->items_pos[i].y = 0;
 				return (1);
+			}
 		i++;
 	}
 	return (0);
