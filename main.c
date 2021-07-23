@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/23 11:55:55 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/23 12:18:14 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	ft_key(int key, t_params *para)
 		para->collected++;
 	if (check_ex(para, para->pl_x, para->pl_y) && para->collected >= para->item_count)
 		para->gg = 1;
-	printf("itemcount=%d\n", para->item_count);
-	printf("collected=%d\n", para->collected);
 	return (0);
 }
 
@@ -105,9 +103,17 @@ void	init_params(t_params *para)
 	para->gg = 0;
 }
 
+// void	loop(t_params *para)
+// {
+// 	mlx_key_hook(para->win, ft_key, para);
+// 	mlx_hook(para->win, 17, 0L, ft_close, para);
+// 	mlx_loop(para->mlx);
+// }
+
 int	main(int argc, char **argv)
 {
 	t_params	*para;
+	void		(*ptr)(t_params *);
 
 	if (argc != 2)
 	{
@@ -140,5 +146,13 @@ int	main(int argc, char **argv)
 	mlx_key_hook(para->win, ft_key, para);
 	mlx_hook(para->win, 17, 0L, ft_close, para);
 	mlx_loop(para->mlx);
+	// ptr = &loop;
+	// while (1)
+	// {
+	// 	if (para->gg)
+	// 		break ;
+	// 	(*ptr)(para);
+	// }
+	// write(1, "ok\n", 1);
 	return (0);
 }
