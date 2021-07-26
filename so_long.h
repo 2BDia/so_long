@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:05:04 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:40:29 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_params
 	void	*pl_do_img;
 	void	*pl_ri_img;
 	void	*pl_le_img;
+	void	*pl_end1_img;
+	void	*pl_end2_img;
 	int		pl_img_w;
 	int		pl_img_h;
 	void	*bg_img;

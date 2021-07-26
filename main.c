@@ -6,13 +6,12 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:16:14 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:49:14 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
-#include <time.h>
 
 static void	process_keys(int key, t_params *para)
 {
@@ -55,6 +54,8 @@ void	init_sprites(t_params *para)
 	para->pl_do_img = mlx_xpm_file_to_image(para->mlx, "sprites/maydown.xpm", &para->pl_img_w, &para->pl_img_h);
 	para->pl_ri_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayright.xpm", &para->pl_img_w, &para->pl_img_h);
 	para->pl_le_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayleft.xpm", &para->pl_img_w, &para->pl_img_h);
+	para->pl_end1_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayend1.xpm", &para->pl_img_w, &para->pl_img_h);
+	para->pl_end2_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayend2.xpm", &para->pl_img_w, &para->pl_img_h);
 	para->bg_img = mlx_xpm_file_to_image(para->mlx, "sprites/water.xpm", &para->bg_img_w, &para->bg_img_h);
 	para->bg2_img = mlx_xpm_file_to_image(para->mlx, "sprites/water2.xpm", &para->bg2_img_w, &para->bg2_img_h);
 	para->rock_img = mlx_xpm_file_to_image(para->mlx, "sprites/rock.xpm", &para->rock_img_w, &para->rock_img_h);
@@ -86,6 +87,8 @@ void	init_params(t_params *para)
 	para->pl_do_img = NULL;
 	para->pl_ri_img = NULL;
 	para->pl_le_img = NULL;
+	para->pl_end1_img = NULL;
+	para->pl_end2_img = NULL;
 	para->pl_img_w = 0;
 	para->pl_img_h = 0;
 	para->bg_img = NULL;

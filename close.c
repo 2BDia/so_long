@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:08:59 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 11:59:12 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:49:54 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	ft_close(t_params *para)
 		mlx_destroy_image(para->mlx, para->pl_do_img);
 		mlx_destroy_image(para->mlx, para->pl_ri_img);
 		mlx_destroy_image(para->mlx, para->pl_le_img);
+		mlx_destroy_image(para->mlx, para->pl_end1_img);
+		mlx_destroy_image(para->mlx, para->pl_end2_img);
 		mlx_destroy_image(para->mlx, para->bg_img);
+		mlx_destroy_image(para->mlx, para->bg2_img);
 		mlx_destroy_image(para->mlx, para->rock_img);
 		mlx_destroy_image(para->mlx, para->item_img);
 		mlx_destroy_image(para->mlx, para->ex_img);
