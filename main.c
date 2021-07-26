@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:49:14 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:01:52 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,24 @@ void	init_params(t_params *para)
 	para->water_frame = 0;
 }
 
+static int	check_ber(char *str)
+{
+	int	i;
+
+	i = ft_strlen(str) - 1;
+	if (str[i--] == 'r')
+		if (str[i--] == 'e')
+			if (str[i--] == 'b')
+				if (str[i] == '.')
+					return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_params	*para;
 
-	if (argc != 2)
+	if (argc != 2 || !check_ber(argv[1]))
 	{
 		write(1, "Error\n", 6);
 		return (0);
