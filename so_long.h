@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 13:09:18 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:05:04 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_params
 	int		pl_count;
 	int		pl_x;
 	int		pl_y;
+	int		pl_rot;
 	int		ex_count;
 	int		ex_x;
 	int		ex_y;
@@ -95,7 +96,7 @@ int		parse_map(t_params *para);
 
 int		ft_close(t_params *para);
 
-void	set_bg(t_params *para);
+void	set_bg(t_params *para, void *bg_img);
 void	set_borders(t_params *para);
 void	set_items(t_params *para);
 void	set_rocks(t_params *para);
@@ -104,6 +105,6 @@ int		check_rock(t_params *para, int x, int y);
 int		check_item(t_params *para, int x, int y);
 int		check_ex(t_params *para, int x, int y);
 
-void	loop(t_params *para);
+int		update(t_params *para);
 
 #endif

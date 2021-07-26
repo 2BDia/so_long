@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 13:09:55 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:13:09 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_key(int key, t_params *para)
 	process_keys(key, para);
 	if (check_item(para, para->pl_x, para->pl_y))
 		para->collected++;
-	if (check_ex(para, para->pl_x, para->pl_y) && para->collected >= para->item_count)
+	if (check_ex(para, para->pl_x, para->pl_y) && para->collected == para->item_count)
 		para->gg = 1;
 	return (0);
 }
@@ -71,6 +71,7 @@ void	init_params(t_params *para)
 	para->pl_count = 0;
 	para->pl_x = 0;
 	para->pl_y = 0;
+	para->pl_rot = 2;
 	para->ex_count = 0;
 	para->ex_x = 0;
 	para->ex_y = 0;
@@ -107,16 +108,6 @@ void	init_params(t_params *para)
 	para->water_frame = 0;
 }
 
-int	update(t_params *para)
-{
-	if (para->gg)
-		ft_close(para);
-	if (para->frames % 12000 == 0)
-        write(1, "ok\n", 3);
-    para->frames++;
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_params	*para;
@@ -138,12 +129,14 @@ int	main(int argc, char **argv)
 		write(1, "Error\n", 6);
 		ft_close(para);
 	}
+	printf("ex_x=%d\n", para->ex_x);
+	printf("ex_y=%d\n", para->ex_y);
 	para->mlx = mlx_init();
 	init_sprites(para);
 	para->win_w = 64 * para->map_w;
 	para->win_h = 64 * para->map_h;
 	para->win = mlx_new_window(para->mlx, para->win_w, para->win_h, "./so_long");
-	set_bg(para);
+	set_bg(para, para->bg_img);
 	set_borders(para);
 	set_items(para);
 	set_rocks(para);

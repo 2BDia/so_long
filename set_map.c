@@ -6,13 +6,13 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:08:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 13:11:04 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:14:32 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_bg(t_params *para)
+void	set_bg(t_params *para, void *bg_img)
 {
 	int	x;
 	int	y;
@@ -23,7 +23,7 @@ void	set_bg(t_params *para)
 		y = 0;
 		while (y < para->win_h)
 		{
-			mlx_put_image_to_window(para->mlx, para->win, para->bg2_img, x, y);
+			mlx_put_image_to_window(para->mlx, para->win, bg_img, x, y);
 			y += 64;
 		}
 		x += 64;
@@ -65,7 +65,8 @@ void	set_items(t_params *para)
 	i = 0;
 	while (i < para->item_count)
 	{
-		mlx_put_image_to_window(para->mlx, para->win, para->item_img, para->items_pos[i].x, para->items_pos[i].y);
+		if (para->items_pos[i].x != 0 && para->items_pos[i].y != 0)
+			mlx_put_image_to_window(para->mlx, para->win, para->item_img, para->items_pos[i].x, para->items_pos[i].y);
 		i++;
 	}
 }
