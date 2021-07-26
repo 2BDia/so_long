@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:40:29 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:47:30 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct	s_params
 	int		water_frame;
 }	t_params;
 
+void	print_nbr_on_bg(t_params *para);
+
 char	*ft_itoa(int value);
 int		ft_strlen(char *str);
 
@@ -97,6 +99,8 @@ int		check_map(t_params *para, char **argv);
 int		parse_map(t_params *para);
 
 int		ft_close(t_params *para);
+int		check_ber(char *str);
+void	error(t_params *para);
 
 void	set_bg(t_params *para, void *bg_img);
 void	set_borders(t_params *para);
@@ -108,5 +112,9 @@ int		check_item(t_params *para, int x, int y);
 int		check_ex(t_params *para, int x, int y);
 
 int		update(t_params *para);
+
+void	init_sprites(t_params *para);
+void	init_params(t_params *para);
+void	init_and_start(t_params *para);
 
 #endif

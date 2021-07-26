@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 13:45:22 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:50:40 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:46:33 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	update(t_params *para)
 			print_back(para, 3);
 		para->water_frame = 0;
 	}
+	if (para->frames % 10000 == 0)
+		print_nbr_on_bg(para);
 	if (para->frames % 10000 == 0 && para->gg > 0)
 	{
 		if (para->gg == 1)

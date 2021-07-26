@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:08:59 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:49:54 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 15:22:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,23 @@ int	ft_close(t_params *para)
 	free(para);
 	system("leaks so_long");
 	exit (0);
+}
+
+int	check_ber(char *str)
+{
+	int	i;
+
+	i = ft_strlen(str) - 1;
+	if (str[i--] == 'r')
+		if (str[i--] == 'e')
+			if (str[i--] == 'b')
+				if (str[i] == '.')
+					return (1);
+	return (0);
+}
+
+void	error(t_params *para)
+{
+	write(1, "Error\n", 6);
+	ft_close(para);
 }
