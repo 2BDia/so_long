@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/23 12:18:14 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 12:16:17 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void	process_keys(int key, t_params *para)
 
 int	ft_key(int key, t_params *para)
 {
-	if (para->gg)
-		ft_close(para);
 	process_keys(key, para);
 	if (check_item(para, para->pl_x, para->pl_y))
 		para->collected++;
@@ -103,17 +101,17 @@ void	init_params(t_params *para)
 	para->gg = 0;
 }
 
-// void	loop(t_params *para)
-// {
-// 	mlx_key_hook(para->win, ft_key, para);
-// 	mlx_hook(para->win, 17, 0L, ft_close, para);
-// 	mlx_loop(para->mlx);
-// }
+int	update(t_params *para)
+{
+	if (para->gg)
+		ft_close(para);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
 	t_params	*para;
-	void		(*ptr)(t_params *);
+	// void		(*ptr)(t_params *);
 
 	if (argc != 2)
 	{
@@ -144,15 +142,8 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(para->mlx, para->win, para->pl_do_img, para->pl_x, para->pl_y);
 	mlx_put_image_to_window(para->mlx, para->win, para->ex_img, para->ex_x, para->ex_y);
 	mlx_key_hook(para->win, ft_key, para);
+	mlx_loop_hook(para->mlx, update, para);
 	mlx_hook(para->win, 17, 0L, ft_close, para);
 	mlx_loop(para->mlx);
-	// ptr = &loop;
-	// while (1)
-	// {
-	// 	if (para->gg)
-	// 		break ;
-	// 	(*ptr)(para);
-	// }
-	// write(1, "ok\n", 1);
 	return (0);
 }

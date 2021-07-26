@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/21 14:16:01 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 11:59:49 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,10 @@ int	check_map(t_params *para, char **argv)
 	j = 0;
 	k = 1;
 	para->map = read_map(argv);
-	if (!check_borders(para, &i, &j, &k))
-		return (0);
-	if (j == i)
+	k = check_borders(para, &i, &j, &k);
+	para->map_w = j + 1;
+	para->map_h = i + 1;
+	if (!k)
 		return (0);
 	k = 0;
 	while (k < i)
@@ -126,8 +127,6 @@ int	check_map(t_params *para, char **argv)
 			return (0);
 		k++;
 	}
-	para->map_w = j + 1;
-	para->map_h = i + 1;
 	if (!check_inside(para))
 		return (0);
 	return (1);
