@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:20 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:20:10 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:58:04 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ int	move_left(t_params *para)
 		para->pl_rot = 0;
 		return (1);
 	}
+	if (check_enemy(para, para->pl_x - 64, para->pl_y))
+	{
+		place_bg_ex(para);
+		mlx_put_image_to_window(para->mlx, para->win, para->pl_le_img, para->pl_x, para->pl_y);
+		para->gg = -1;
+		return (1);
+	}
 	place_bg_ex(para);
 	para->pl_x -= 64;
 	mlx_put_image_to_window(para->mlx, para->win, para->pl_le_img, para->pl_x, para->pl_y);
@@ -45,6 +52,13 @@ int	move_right(t_params *para)
 		place_bg_ex(para);
 		mlx_put_image_to_window(para->mlx, para->win, para->pl_ri_img, para->pl_x, para->pl_y);
 		para->pl_rot = 1;
+		return (1);
+	}
+	if (check_enemy(para, para->pl_x + 64, para->pl_y))
+	{
+		place_bg_ex(para);
+		mlx_put_image_to_window(para->mlx, para->win, para->pl_ri_img, para->pl_x, para->pl_y);
+		para->gg = -1;
 		return (1);
 	}
 	place_bg_ex(para);
@@ -63,6 +77,13 @@ int	move_down(t_params *para)
 		para->pl_rot = 2;
 		return (1);
 	}
+	if (check_enemy(para, para->pl_x, para->pl_y + 64))
+	{
+		place_bg_ex(para);
+		mlx_put_image_to_window(para->mlx, para->win, para->pl_do_img, para->pl_x, para->pl_y);
+		para->gg = -1;
+		return (1);
+	}
 	place_bg_ex(para);
 	para->pl_y += 64;
 	mlx_put_image_to_window(para->mlx, para->win, para->pl_do_img, para->pl_x, para->pl_y);
@@ -77,6 +98,13 @@ int	move_up(t_params *para)
 		place_bg_ex(para);
 		mlx_put_image_to_window(para->mlx, para->win, para->pl_up_img, para->pl_x, para->pl_y);
 		para->pl_rot = 3;
+		return (1);
+	}
+	if (check_enemy(para, para->pl_x, para->pl_y - 64))
+	{
+		place_bg_ex(para);
+		mlx_put_image_to_window(para->mlx, para->win, para->pl_up_img, para->pl_x, para->pl_y);
+		para->gg = -1;
 		return (1);
 	}
 	place_bg_ex(para);

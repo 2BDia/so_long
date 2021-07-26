@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 15:47:30 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:46:09 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef	struct s_rocks
 	int	y;
 }	t_rocks;
 
+typedef	struct s_enemy
+{
+	int	x;
+	int	y;
+}	t_enemy;
+
 typedef struct	s_params
 {
 	void	*mlx;
@@ -47,6 +53,8 @@ typedef struct	s_params
 	t_items	*items_pos;
 	int		rock_count;
 	t_rocks	*rocks_pos;
+	int		enem_count;
+	t_enemy	*enem_pos;
 	int		moves;
 	int		collected;
 	char	**map;
@@ -58,23 +66,14 @@ typedef struct	s_params
 	void	*pl_le_img;
 	void	*pl_end1_img;
 	void	*pl_end2_img;
-	int		pl_img_w;
-	int		pl_img_h;
 	void	*bg_img;
-	int		bg_img_w;
-	int		bg_img_h;
 	void	*bg2_img;
-	int		bg2_img_w;
-	int		bg2_img_h;
 	void	*rock_img;
-	int		rock_img_w;
-	int		rock_img_h;
 	void	*item_img;
-	int		item_img_w;
-	int		item_img_h;
 	void	*ex_img;
-	int		ex_img_w;
-	int		ex_img_h;
+	void	*enem_img;
+	int		sprite_w;
+	int		sprite_h;
 	int		gg;
 	int		frames;
 	int		water_frame;
@@ -106,7 +105,9 @@ void	set_bg(t_params *para, void *bg_img);
 void	set_borders(t_params *para);
 void	set_items(t_params *para);
 void	set_rocks(t_params *para);
+void	set_enemies(t_params *para);
 
+int		check_enemy(t_params *para, int x, int y);
 int		check_rock(t_params *para, int x, int y);
 int		check_item(t_params *para, int x, int y);
 int		check_ex(t_params *para, int x, int y);

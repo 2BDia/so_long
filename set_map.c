@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:08:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:14:32 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:40:35 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,18 @@ void	set_rocks(t_params *para)
 	while (i < para->rock_count)
 	{
 		mlx_put_image_to_window(para->mlx, para->win, para->rock_img, para->rocks_pos[i].x, para->rocks_pos[i].y);
+		i++;
+	}
+}
+
+void	set_enemies(t_params *para)
+{
+	int	i;
+
+	i = 0;
+	while (i < para->enem_count)
+	{
+		mlx_put_image_to_window(para->mlx, para->win, para->enem_img, para->enem_pos[i].x, para->enem_pos[i].y);
 		i++;
 	}
 }

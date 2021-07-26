@@ -6,12 +6,11 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:08:59 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 15:22:44 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:59:18 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 static void	free_strs(char **strs, int h)
 {
@@ -27,6 +26,8 @@ static void	free_lst(t_params *para)
 		free(para->items_pos);
 		if (para->rock_count > 0)
 			free(para->rocks_pos);
+		if (para->enem_count > 0)
+			free(para->enem_pos);
 	}
 }
 

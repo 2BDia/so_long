@@ -6,11 +6,26 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:44:21 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/23 11:57:29 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:45:36 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	check_enemy(t_params *para, int x, int y)
+{
+	int	i;
+
+	i = 0;
+	while (i < para->enem_count)
+	{
+		if (x == para->enem_pos[i].x)
+			if (y == para->enem_pos[i].y)
+				return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	check_rock(t_params *para, int x, int y)
 {

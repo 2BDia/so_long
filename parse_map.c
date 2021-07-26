@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:12:20 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:41:47 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,12 @@ static int	check_inside(t_params *para)
 		{
 			if (para->map[i][j] != '1' && para->map[i][j] != '0'
 				&& para->map[i][j] != 'P' && para->map[i][j] != 'C'
-				&& para->map[i][j] != 'E')
+				&& para->map[i][j] != 'E' && para->map[i][j] != 'M')
 				return (0);
 			if (para->map[i][j] == 'C')
 				para->item_count++;
+			if (para->map[i][j] == 'M')
+				para->enem_count++;
 			if (para->map[i][j] == '1' && i != 0 && i != para->map_h - 1
 				&& j != 0 && j != para->map_w - 1)
 				para->rock_count++;
@@ -99,9 +101,11 @@ static int	check_inside(t_params *para)
 	}
 	if (para->item_count == 0)
 		return (0);
-	para->items_pos = (t_items *)malloc(sizeof(t_params) * (para->item_count));
+	para->items_pos = (t_items *)malloc(sizeof(t_items) * (para->item_count));
 	if (para->rock_count > 0)
-		para->rocks_pos = (t_rocks *)malloc(sizeof(t_params) * (para->rock_count));
+		para->rocks_pos = (t_rocks *)malloc(sizeof(t_rocks) * (para->rock_count));
+	if (para->enem_count > 0)
+		para->enem_pos = (t_enemy *)malloc(sizeof(t_enemy) * (para->enem_count));
 	return (1);
 }
 
@@ -140,12 +144,14 @@ int	parse_map(t_params *para)
 	int	checkex;
 	int	item;
 	int	rock;
+	int	enemy;
 
 	i = 1;
 	checkpl = 0;
 	checkex = 0;
 	item = 0;
 	rock = 0;
+	enemy = 0;
 	while (i < para->map_h - 1)
 	{
 		j = 1;
@@ -176,6 +182,11 @@ int	parse_map(t_params *para)
 			{
 				para->rocks_pos[rock].x = j * 64;
 				para->rocks_pos[rock++].y = i * 64;
+			}
+			else if (para->map[i][j] == 'M')
+			{
+				para->enem_pos[enemy].x = j * 64;
+				para->enem_pos[enemy++].y = i * 64;
 			}
 			j++;
 		}

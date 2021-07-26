@@ -6,12 +6,11 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 15:49:14 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:47:27 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 static void	black_bg(t_params *para, int width)
 {
