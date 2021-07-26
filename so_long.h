@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/23 11:10:51 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 13:09:18 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef struct	s_params
 	void	*bg_img;
 	int		bg_img_w;
 	int		bg_img_h;
+	void	*bg2_img;
+	int		bg2_img_w;
+	int		bg2_img_h;
 	void	*rock_img;
 	int		rock_img_w;
 	int		rock_img_h;
@@ -70,6 +73,8 @@ typedef struct	s_params
 	int		ex_img_w;
 	int		ex_img_h;
 	int		gg;
+	int		frames;
+	int		water_frame;
 }	t_params;
 
 char	*ft_itoa(int value);

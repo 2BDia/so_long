@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 12:16:17 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 13:09:55 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_sprites(t_params *para)
 	para->pl_ri_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayright.xpm", &para->pl_img_w, &para->pl_img_h);
 	para->pl_le_img = mlx_xpm_file_to_image(para->mlx, "sprites/mayleft.xpm", &para->pl_img_w, &para->pl_img_h);
 	para->bg_img = mlx_xpm_file_to_image(para->mlx, "sprites/water.xpm", &para->bg_img_w, &para->bg_img_h);
+	para->bg2_img = mlx_xpm_file_to_image(para->mlx, "sprites/water2.xpm", &para->bg2_img_w, &para->bg2_img_h);
 	para->rock_img = mlx_xpm_file_to_image(para->mlx, "sprites/rock.xpm", &para->rock_img_w, &para->rock_img_h);
 	para->item_img = mlx_xpm_file_to_image(para->mlx, "sprites/item.xpm", &para->item_img_w, &para->item_img_h);
 	para->ex_img = mlx_xpm_file_to_image(para->mlx, "sprites/ex.xpm", &para->ex_img_w, &para->ex_img_h);
@@ -89,6 +90,9 @@ void	init_params(t_params *para)
 	para->bg_img = NULL;
 	para->bg_img_w = 0;
 	para->bg_img_h = 0;
+	para->bg2_img = NULL;
+	para->bg2_img_w = 0;
+	para->bg2_img_h = 0;
 	para->rock_img = NULL;
 	para->rock_img_w = 0;
 	para->rock_img_h = 0;
@@ -99,19 +103,23 @@ void	init_params(t_params *para)
 	para->ex_img_w = 0;
 	para->ex_img_h = 0;
 	para->gg = 0;
+	para->frames = 0;
+	para->water_frame = 0;
 }
 
 int	update(t_params *para)
 {
 	if (para->gg)
 		ft_close(para);
+	if (para->frames % 12000 == 0)
+        write(1, "ok\n", 3);
+    para->frames++;
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_params	*para;
-	// void		(*ptr)(t_params *);
 
 	if (argc != 2)
 	{
