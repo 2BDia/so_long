@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 13:45:22 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 16:59:55 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 17:09:39 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	print_back(t_params *para, int mod)
 
 int	update(t_params *para)
 {
-	if (para->gg == 3)
+	if (para->gg == 4)
 	{
 		write(1, "YOU WIN!\n", 9);
 		ft_close(para);
@@ -68,6 +68,11 @@ int	update(t_params *para)
 			mlx_put_image_to_window(para->mlx, para->win, para->pl_end1_img, para->pl_x, para->pl_y);
 		else if (para->gg == 2)
 			mlx_put_image_to_window(para->mlx, para->win, para->pl_end2_img, para->pl_x, para->pl_y);
+		else if (para->gg == 3)
+		{
+			para->gg++;
+			return (0);
+		}
 		para->gg++;
 	}
 	if (para->frames % 10000 == 0 && para->gg == -1)
