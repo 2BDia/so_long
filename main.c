@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 14:13:09 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/26 14:16:14 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,6 @@ int	main(int argc, char **argv)
 		write(1, "Error\n", 6);
 		ft_close(para);
 	}
-	printf("ex_x=%d\n", para->ex_x);
-	printf("ex_y=%d\n", para->ex_y);
 	para->mlx = mlx_init();
 	init_sprites(para);
 	para->win_w = 64 * para->map_w;
