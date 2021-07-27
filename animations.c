@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 13:45:22 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 17:09:39 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/27 12:10:44 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	update(t_params *para)
 {
 	if (para->gg == 4)
 	{
-		write(1, "YOU WIN!\n", 9);
+		write(1, "\033[0;32mYOU WIN!\n", 16);
 		ft_close(para);
 	}
 	if (para->frames % 10000 == 0 && para->water_frame == 0)
@@ -77,7 +77,7 @@ int	update(t_params *para)
 	}
 	if (para->frames % 10000 == 0 && para->gg == -1)
 	{
-			write(1, "YOU LOSE!\n", 10);
+			write(1, "\033[0;31mYOU LOSE!\n", 17);
 			ft_close(para);
 	}
     para->frames++;
