@@ -6,21 +6,21 @@
 #    By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/16 11:22:48 by rvan-aud          #+#    #+#              #
-#    Updated: 2021/07/26 15:25:47 by rvan-aud         ###   ########.fr        #
+#    Updated: 2021/07/27 12:19:09 by rvan-aud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= 	main.c			\
-			modgnl.c		\
+			animations.c	\
+			check_elem.c	\
+			close.c			\
+			init.c			\
 			modgnl_utils.c	\
+			modgnl.c		\
 			move_player.c	\
 			utils.c			\
 			parse_map.c		\
-			close.c			\
 			set_map.c		\
-			check_elem.c	\
-			animations.c	\
-			init.c			\
 
 NAME	= so_long
 

@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/27 12:12:41 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/27 12:19:56 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static int	ft_key(int key, t_params *para)
 		process_keys(key, para);
 		if (check_item(para, para->pl_x, para->pl_y))
 			para->collected++;
-		if (check_ex(para, para->pl_x, para->pl_y) && para->collected == para->item_count)
+		if (check_ex(para, para->pl_x, para->pl_y)
+			&& para->collected == para->item_count)
 			para->gg = 1;
 	}
 	return (0);
