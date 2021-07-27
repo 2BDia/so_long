@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:30 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/27 12:26:31 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/27 14:46:50 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,7 @@ int		update(t_params *para);
 void	init_sprites(t_params *para);
 void	init_params(t_params *para);
 void	init_and_start(t_params *para);
+
+char	**read_map(char **argv);
 
 #endif
