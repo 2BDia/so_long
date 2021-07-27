@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 13:45:22 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/27 12:35:10 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/27 14:01:54 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,53 @@ static void	print_back(t_params *para, int mod)
 		print_back_pl(para);
 }
 
+static void	prep_print_back(t_params *para)
+{
+	if (para->water_frame == 0)
+	{
+		if (para->gg == 0)
+			print_back(para, 0);
+		else
+			print_back(para, 2);
+		para->water_frame = 1;
+	}
+	else if (para->water_frame == 1)
+	{
+		if (para->gg == 0)
+			print_back(para, 1);
+		else
+			print_back(para, 3);
+		para->water_frame = 0;
+	}
+}
+
+static int	update_anim(t_params *para)
+{
+	prep_print_back(para);
+	print_nbr_on_bg(para);
+	if (para->gg > 0)
+	{
+		if (para->gg == 1)
+			mlx_put_image_to_window(para->mlx, para->win,
+				para->pl_end1_img, para->pl_x, para->pl_y);
+		else if (para->gg == 2)
+			mlx_put_image_to_window(para->mlx, para->win,
+				para->pl_end2_img, para->pl_x, para->pl_y);
+		else if (para->gg == 3)
+		{
+			para->gg++;
+			return (0);
+		}
+		para->gg++;
+	}
+	if (para->gg == -1)
+	{
+		write(1, "\033[0;31mYOU LOSE!\n", 17);
+		ft_close(para);
+	}
+	return (1);
+}
+
 int	update(t_params *para)
 {
 	if (para->gg == 4)
@@ -53,45 +100,8 @@ int	update(t_params *para)
 		ft_close(para);
 	}
 	if (para->frames % 10000 == 0)
-	{
-		if (para->water_frame == 0)
-		{
-			if (para->gg == 0)
-				print_back(para, 0);
-			else
-				print_back(para, 2);
-			para->water_frame = 1;
-		}
-		else if (para->water_frame == 1)
-		{
-			if (para->gg == 0)
-				print_back(para, 1);
-			else
-				print_back(para, 3);
-			para->water_frame = 0;
-		}
-		print_nbr_on_bg(para);
-		if (para->gg > 0)
-		{
-			if (para->gg == 1)
-				mlx_put_image_to_window(para->mlx, para->win,
-					para->pl_end1_img, para->pl_x, para->pl_y);
-			else if (para->gg == 2)
-				mlx_put_image_to_window(para->mlx, para->win,
-					para->pl_end2_img, para->pl_x, para->pl_y);
-			else if (para->gg == 3)
-			{
-				para->gg++;
-				return (0);
-			}
-			para->gg++;
-		}
-		if (para->gg == -1)
-		{
-			write(1, "\033[0;31mYOU LOSE!\n", 17);
-			ft_close(para);
-		}
-	}
+		if (!update_anim(para))
+			return (0);
 	para->frames++;
 	return (0);
 }

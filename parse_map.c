@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 13:44:37 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/27 12:20:13 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/27 14:11:36 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	**read_map(char **argv)
 	char	**map;
 	int		ret;
 	int		i;
-	int 	fd;
+	int		fd;
 
 	ret = 1;
 	i = 0;
