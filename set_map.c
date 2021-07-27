@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 14:08:39 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/26 16:40:35 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/27 15:13:05 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_bg(t_params *para, void *bg_img)
 	}
 }
 
-static void	set_borders_xy(t_params *para, int x, int y, int mod)
+void	set_borders_xy(t_params *para, int x, int y, int mod)
 {
 	if (mod == 0)
 	{
@@ -50,14 +50,6 @@ static void	set_borders_xy(t_params *para, int x, int y, int mod)
 	}
 }
 
-void	set_borders(t_params *para)
-{
-	set_borders_xy(para, 0, 0, 0);
-	set_borders_xy(para, 0, para->win_h - 64, 0);
-	set_borders_xy(para, 0, 64, 1);
-	set_borders_xy(para, para->win_w - 64, 64, 1);
-}
-
 void	set_items(t_params *para)
 {
 	int	i;
@@ -66,7 +58,8 @@ void	set_items(t_params *para)
 	while (i < para->item_count)
 	{
 		if (para->items_pos[i].x != 0 && para->items_pos[i].y != 0)
-			mlx_put_image_to_window(para->mlx, para->win, para->item_img, para->items_pos[i].x, para->items_pos[i].y);
+			mlx_put_image_to_window(para->mlx, para->win, para->item_img,
+				para->items_pos[i].x, para->items_pos[i].y);
 		i++;
 	}
 }
@@ -78,7 +71,8 @@ void	set_rocks(t_params *para)
 	i = 0;
 	while (i < para->rock_count)
 	{
-		mlx_put_image_to_window(para->mlx, para->win, para->rock_img, para->rocks_pos[i].x, para->rocks_pos[i].y);
+		mlx_put_image_to_window(para->mlx, para->win, para->rock_img,
+			para->rocks_pos[i].x, para->rocks_pos[i].y);
 		i++;
 	}
 }
@@ -90,7 +84,8 @@ void	set_enemies(t_params *para)
 	i = 0;
 	while (i < para->enem_count)
 	{
-		mlx_put_image_to_window(para->mlx, para->win, para->enem_img, para->enem_pos[i].x, para->enem_pos[i].y);
+		mlx_put_image_to_window(para->mlx, para->win, para->enem_img,
+			para->enem_pos[i].x, para->enem_pos[i].y);
 		i++;
 	}
 }

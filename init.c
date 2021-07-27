@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 15:24:54 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/27 14:06:57 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/27 15:15:32 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,14 @@ void	init_params(t_params *para)
 	para->pl_ri_img = NULL;
 	para->pl_le_img = NULL;
 	init_params_helper(para);
+}
+
+void	set_borders(t_params *para)
+{
+	set_borders_xy(para, 0, 0, 0);
+	set_borders_xy(para, 0, para->win_h - 64, 0);
+	set_borders_xy(para, 0, 64, 1);
+	set_borders_xy(para, para->win_w - 64, 64, 1);
 }
 
 void	init_and_start(t_params *para)
