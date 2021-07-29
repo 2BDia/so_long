@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:27:24 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/27 12:19:56 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/29 15:42:14 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	para = (t_params *)malloc(sizeof(t_params));
+	if (!para)
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
 	init_params(para);
 	if (!check_map(para, argv) || !parse_map(para))
 		error(para);

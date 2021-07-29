@@ -6,7 +6,7 @@
 /*   By: rvan-aud <rvan-aud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 14:45:06 by rvan-aud          #+#    #+#             */
-/*   Updated: 2021/07/27 14:45:57 by rvan-aud         ###   ########.fr       */
+/*   Updated: 2021/07/29 15:40:28 by rvan-aud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ int	check_map(t_params *para, char **argv)
 	j = 0;
 	k = 1;
 	para->map = read_map(argv);
+	if (!para->map)
+		return (0);
 	k = check_borders(para, &i, &j, &k);
 	para->map_w = j + 1;
 	para->map_h = i + 1;
